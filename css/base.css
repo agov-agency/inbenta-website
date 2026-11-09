@@ -1,0 +1,110 @@
+/*
+ * Base styles: a light reset and the text styles from the Figma style guide.
+ * Requires tokens.css to be loaded first.
+ */
+
+/* ---------- Reset ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-weight: var(--weight-regular);
+  font-size: var(--p3-size);
+  line-height: var(--p3-line);
+  letter-spacing: var(--p3-tracking);
+  color: var(--color-neutral-90);
+  background: var(--color-neutral-0);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6,
+p, figure, blockquote, dl, dd {
+  margin: 0;
+}
+
+img, svg, video {
+  display: block;
+  max-width: 100%;
+}
+
+button, input, select, textarea {
+  font: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+/* ---------- Headings ----------
+ * Use the class when the visual size differs from the HTML level,
+ * e.g. <h2 class="h4">.
+ */
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
+  font-family: var(--font-sans);
+  font-weight: var(--weight-medium);
+}
+
+h1, .h1 { font-size: var(--h1-size); line-height: var(--h1-line); letter-spacing: var(--h1-tracking); }
+h2, .h2 { font-size: var(--h2-size); line-height: var(--h2-line); letter-spacing: var(--h2-tracking); }
+h3, .h3 { font-size: var(--h3-size); line-height: var(--h3-line); letter-spacing: var(--h3-tracking); }
+h4, .h4 { font-size: var(--h4-size); line-height: var(--h4-line); letter-spacing: var(--h4-tracking); }
+h5, .h5 { font-size: var(--h5-size); line-height: var(--h5-line); letter-spacing: var(--h5-tracking); }
+
+/* ---------- Body ---------- */
+.p0, .p1, .p2, .p3, .p4 {
+  font-family: var(--font-sans);
+  font-weight: var(--weight-regular);
+}
+
+.p0 { font-size: var(--p0-size); line-height: var(--p0-line); letter-spacing: var(--p0-tracking); }
+.p1 { font-size: var(--p1-size); line-height: var(--p1-line); letter-spacing: var(--p1-tracking); }
+.p2 { font-size: var(--p2-size); line-height: var(--p2-line); letter-spacing: var(--p2-tracking); }
+.p3 { font-size: var(--p3-size); line-height: var(--p3-line); letter-spacing: var(--p3-tracking); }
+.p4 { font-size: var(--p4-size); line-height: var(--p4-line); letter-spacing: var(--p4-tracking); }
+
+.p3-semibold {
+  font-family: var(--font-sans);
+  font-weight: var(--weight-semibold);
+  font-size: var(--p3-semibold-size);
+  line-height: var(--p3-semibold-line);
+  letter-spacing: var(--p3-semibold-tracking);
+}
+
+.p4-medium {
+  font-family: var(--font-sans);
+  font-weight: var(--weight-medium);
+  font-size: var(--p4-medium-size);
+  line-height: var(--p4-medium-line);
+  letter-spacing: var(--p4-medium-tracking);
+}
+
+/* ---------- Labels ---------- */
+.l1, .l2 { font-family: var(--font-sans); font-weight: var(--weight-semibold); }
+.l3 { font-family: var(--font-sans); font-weight: var(--weight-medium); }
+
+.l1 { font-size: var(--l1-size); line-height: var(--l1-line); letter-spacing: var(--l1-tracking); }
+.l2 { font-size: var(--l2-size); line-height: var(--l2-line); letter-spacing: var(--l2-tracking); }
+.l3 { font-size: var(--l3-size); line-height: var(--l3-line); letter-spacing: var(--l3-tracking); }
+
+.l1-mono,
+.l2-mono {
+  font-family: var(--font-mono);
+  font-weight: var(--weight-medium);
+  text-transform: uppercase;
+}
+
+.l1-mono { font-size: var(--l1-mono-size); line-height: var(--l1-mono-line); letter-spacing: var(--l1-mono-tracking); }
+.l2-mono { font-size: var(--l2-mono-size); line-height: var(--l2-mono-line); letter-spacing: var(--l2-mono-tracking); }

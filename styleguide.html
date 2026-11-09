@@ -1,0 +1,567 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inbenta Style Guide</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@500&family=Inter:wght@400;500;600;700&display=swap">
+
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+
+  <style>
+    /* Layout of this preview page only. Not part of the design system. */
+    .sg {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 80px 160px;
+    }
+
+    .sg-bar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 80px;
+      background: var(--color-neutral-90);
+      color: var(--color-neutral-0);
+    }
+
+    .sg-bar__scale {
+      padding: 6px 10px;
+      border-radius: 4px;
+      background: var(--color-primary-deep-blue);
+    }
+
+    .sg-hero {
+      padding: 120px 0 80px;
+    }
+
+    .sg-hero p {
+      margin-top: 16px;
+      max-width: 640px;
+      color: var(--color-neutral-70);
+    }
+
+    .sg-section {
+      padding-top: 96px;
+    }
+
+    .sg-section__title {
+      padding-bottom: 16px;
+      margin-bottom: 48px;
+      border-bottom: 1px solid var(--color-neutral-30);
+    }
+
+    .sg-section__note {
+      margin: -32px 0 40px;
+      color: var(--color-neutral-60);
+    }
+
+    /* Fonts */
+    .sg-fonts {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+    }
+
+    .sg-font {
+      overflow: hidden;
+      border: 1px solid var(--color-neutral-30);
+      border-radius: 8px;
+    }
+
+    .sg-font__sample {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 64px 24px;
+      background: var(--color-neutral-20);
+      font-size: 56px;
+      font-weight: var(--weight-medium);
+      line-height: 1;
+    }
+
+    .sg-font__info {
+      display: grid;
+      gap: 8px;
+      padding: 24px;
+    }
+
+    .sg-font__info dl {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 4px 12px;
+      color: var(--color-neutral-70);
+    }
+
+    .sg-font__info dt {
+      font-weight: var(--weight-semibold);
+      color: var(--color-neutral-90);
+    }
+
+    /* Type specimens */
+    .sg-type {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 24px 40px;
+      align-items: baseline;
+      padding: 32px 0;
+      border-bottom: 1px solid var(--color-neutral-30);
+    }
+
+    .sg-type:last-child {
+      border-bottom: 0;
+    }
+
+    .sg-type__meta {
+      display: grid;
+      gap: 8px;
+    }
+
+    .sg-type__name {
+      justify-self: start;
+      padding: 4px 8px;
+      border-radius: 4px;
+      background: var(--color-neutral-20);
+      color: var(--color-neutral-90);
+    }
+
+    .sg-type__spec {
+      color: var(--color-neutral-60);
+    }
+
+    .sg-type__sample {
+      max-width: 720px;
+    }
+
+    /* Colors */
+    .sg-colors {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 32px 24px;
+    }
+
+    .sg-swatch {
+      display: grid;
+      gap: 12px;
+      padding: 0;
+      border: 0;
+      background: none;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .sg-swatch__chip {
+      height: 120px;
+      border-radius: 8px;
+      box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.08);
+      transition: transform 0.15s ease;
+    }
+
+    .sg-swatch:hover .sg-swatch__chip {
+      transform: translateY(-2px);
+    }
+
+    .sg-swatch:focus-visible {
+      outline: 2px solid var(--color-primary-deep-blue);
+      outline-offset: 4px;
+      border-radius: 8px;
+    }
+
+    .sg-swatch__text {
+      display: grid;
+      gap: 6px;
+    }
+
+    .sg-swatch__token {
+      color: var(--color-neutral-60);
+      text-transform: none; /* CSS variable names are case-sensitive */
+      overflow-wrap: anywhere;
+    }
+
+    .sg-group + .sg-group {
+      margin-top: 64px;
+    }
+
+    .sg-group__title {
+      margin-bottom: 24px;
+      color: var(--color-neutral-70);
+    }
+
+    /* Shadow */
+    .sg-shadow-stage {
+      padding: 40px;
+      border-radius: 8px;
+      background: #edf2f8;
+    }
+
+    .sg-shadow {
+      display: grid;
+      gap: 16px;
+      width: 207px;
+    }
+
+    .sg-shadow__box {
+      height: 150px;
+      border-radius: 8px;
+      background: var(--color-neutral-0);
+    }
+
+    /* Copy toast */
+    .sg-toast {
+      position: fixed;
+      left: 50%;
+      bottom: 32px;
+      transform: translate(-50%, 16px);
+      padding: 12px 16px;
+      border-radius: 8px;
+      background: var(--color-neutral-90);
+      color: var(--color-neutral-0);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .sg-toast.is-visible {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    @media (max-width: 1023px) {
+      .sg,
+      .sg-bar {
+        padding-left: 40px;
+        padding-right: 40px;
+      }
+
+      .sg-type {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .sg,
+      .sg-bar {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .sg-hero {
+        padding: 64px 0 40px;
+      }
+
+      .sg-section {
+        padding-top: 64px;
+      }
+
+      .sg-fonts {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .sg-font__sample {
+        font-size: 40px;
+      }
+
+      .sg-colors {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px 16px;
+      }
+
+      .sg-shadow-stage {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sg-bar">
+    <span class="l3">Inbenta Style Guide</span>
+    <span class="sg-bar__scale l2-mono" id="scale-label">Desktop</span>
+  </div>
+
+  <main class="sg">
+
+    <header class="sg-hero">
+      <h1>Style Guide</h1>
+      <p class="p2">Fonts, text styles, colors and shadows from the Figma file "Website Redesign". Values live in <code>css/tokens.css</code>. Click a color to copy its CSS variable.</p>
+    </header>
+
+    <!-- Fonts -->
+    <section class="sg-section" aria-labelledby="fonts">
+      <h2 class="h4 sg-section__title" id="fonts">Fonts</h2>
+      <div class="sg-fonts">
+        <article class="sg-font">
+          <div class="sg-font__sample" style="font-family: var(--font-sans)">Inter</div>
+          <div class="sg-font__info">
+            <h3 class="h5">Primary</h3>
+            <dl class="p4">
+              <dt>Weights</dt><dd>Regular, Medium, Semi Bold, Bold</dd>
+              <dt>Variable</dt><dd><code>--font-sans</code></dd>
+              <dt>Source</dt><dd><a href="https://fonts.google.com/specimen/Inter" target="_blank" rel="noopener">Google Fonts</a></dd>
+            </dl>
+          </div>
+        </article>
+        <article class="sg-font">
+          <div class="sg-font__sample" style="font-family: var(--font-mono)">Geist Mono</div>
+          <div class="sg-font__info">
+            <h3 class="h5">Secondary</h3>
+            <dl class="p4">
+              <dt>Weights</dt><dd>Medium</dd>
+              <dt>Variable</dt><dd><code>--font-mono</code></dd>
+              <dt>Source</dt><dd><a href="https://fonts.google.com/specimen/Geist+Mono" target="_blank" rel="noopener">Google Fonts</a></dd>
+            </dl>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Headings -->
+    <section class="sg-section" aria-labelledby="headings">
+      <h2 class="h4 sg-section__title" id="headings">Headings</h2>
+      <p class="p3 sg-section__note">Inter Medium. Use the tag (&lt;h1&gt;) or the class (.h1).</p>
+      <div>
+        <div class="sg-type">
+          <div class="sg-type__meta"><span class="sg-type__name l2-mono">H1</span><span class="sg-type__spec p4" data-spec-for="s-h1"></span></div>
+          <p class="h1 sg-type__sample" id="s-h1">Heading 1</p>
+        </div>
+        <div class="sg-type">
+          <div class="sg-type__meta"><span class="sg-type__name l2-mono">H2</span><span class="sg-type__spec p4" data-spec-for="s-h2"></span></div>
+          <p class="h2 sg-type__sample" id="s-h2">Heading 2</p>
+        </div>
+        <div class="sg-type">
+          <div class="sg-type__meta"><span class="sg-type__name l2-mono">H3</span><span class="sg-type__spec p4" data-spec-for="s-h3"></span></div>
+          <p class="h3 sg-type__sample" id="s-h3">Heading 3</p>
+        </div>
+        <div class="sg-type">
+          <div class="sg-type__meta"><span class="sg-type__name l2-mono">H4</span><span class="sg-type__spec p4" data-spec-for="s-h4"></span></div>
+          <p class="h4 sg-type__sample" id="s-h4">Heading 4</p>
+        </div>
+        <div class="sg-type">
+          <div class="sg-type__meta"><span class="sg-type__name l2-mono">H5</span><span class="sg-type__spec p4" data-spec-for="s-h5"></span></div>
+          <p class="h5 sg-type__sample" id="s-h5">Heading 5</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Body -->
+    <section class="sg-section" aria-labelledby="body">
+      <h2 class="h4 sg-section__title" id="body">Body</h2>
+      <div>
+        <div class="sg-type">
+          <div class="sg-type__meta"><span class="sg-type__name l2-mono">.p0</span><span class="sg-type__spec p4" data-spec-for="s-p0"></span></div>
+          <p class="p0 sg-type__sample" id="s-p0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+        </div>
+        <div class="sg-type">
+          <div class="sg-type__meta"><span class="sg-type__name l2-mono">.p1</span><span class="sg-type__spec p4" data-spec-for="s-p1"></span></div>
+          <p class="p1 sg-type__sample" id="s-p1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
+        </div>
+        <div class="sg-type">
+          <div class="sg-type__meta"><span class="sg-type__name l2-mono">.p2</span><span class="sg-type__spec p4" data-spec-for="s-p2"></span></div>
+          <p class="p2 sg-type__sample" id="s-p2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
+        </div>
+        <div class="sg-type">
+          <div class="sg-type__meta"><span class="sg-type__name l2-mono">.p3</span><span class="sg-type__spec p4" data-spec-for="s-p3"></span></div>
+          <p class="p3 sg-type__sample" id="s-p3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
+        </div>
+        <div class="sg-type">
+          <div class="sg-type__meta"><span class="sg-type__name l2-mono">.p3-semibold</span><span class="sg-type__spec p4" data-spec-for="s-p3sb"></span></div>
+          <p class="p3-semibold sg-type__sample" id="s-p3sb">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
+        </div>
+        <div class="sg-type">
+          <div class="sg-type__meta"><span class="sg-type__name l2-mono">.p4</span><span class="sg-type__spec p4" data-spec-for="s-p4"></span></div>
+          <p class="p4 sg-type__sample" id="s-p4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
+        </div>
+        <div class="sg-type">
+          <div class="sg-type__meta"><span class="sg-type__name l2-mono">.p4-medium</span><span class="sg-type__spec p4" data-spec-for="s-p4m"></span></div>
+          <p class="p4-medium sg-type__sample" id="s-p4m">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Labels -->
+    <section class="sg-section" aria-labelledby="labels">
+      <h2 class="h4 sg-section__title" id="labels">Labels</h2>
+      <div>
+        <div class="sg-type">
+          <div class="sg-type__meta"><span class="sg-type__name l2-mono">.l1</span><span class="sg-type__spec p4" data-spec-for="s-l1"></span></div>
+          <p class="l1 sg-type__sample" id="s-l1">Lorem ipsum dolor sit</p>
+        </div>
+        <div class="sg-type">
+          <div class="sg-type__meta"><span class="sg-type__name l2-mono">.l2</span><span class="sg-type__spec p4" data-spec-for="s-l2"></span></div>
+          <p class="l2 sg-type__sample" id="s-l2">Lorem ipsum dolor sit</p>
+        </div>
+        <div class="sg-type">
+          <div class="sg-type__meta"><span class="sg-type__name l2-mono">.l3</span><span class="sg-type__spec p4" data-spec-for="s-l3"></span></div>
+          <p class="l3 sg-type__sample" id="s-l3">Lorem ipsum dolor sit</p>
+        </div>
+        <div class="sg-type">
+          <div class="sg-type__meta"><span class="sg-type__name l2-mono">.l1-mono</span><span class="sg-type__spec p4" data-spec-for="s-l1m"></span></div>
+          <p class="l1-mono sg-type__sample" id="s-l1m">Lorem ipsum dolor sit</p>
+        </div>
+        <div class="sg-type">
+          <div class="sg-type__meta"><span class="sg-type__name l2-mono">.l2-mono</span><span class="sg-type__spec p4" data-spec-for="s-l2m"></span></div>
+          <p class="l2-mono sg-type__sample" id="s-l2m">Lorem ipsum dolor sit</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Colors -->
+    <section class="sg-section" aria-labelledby="colors">
+      <h2 class="h4 sg-section__title" id="colors">Colors</h2>
+      <div id="color-groups"></div>
+    </section>
+
+    <!-- Gradient -->
+    <section class="sg-section" aria-labelledby="gradients">
+      <h2 class="h4 sg-section__title" id="gradients">Gradients</h2>
+      <div class="sg-colors">
+        <button class="sg-swatch" type="button" data-copy="var(--gradient-logo)">
+          <span class="sg-swatch__chip" style="background: var(--gradient-logo)"></span>
+          <span class="sg-swatch__text">
+            <span class="p3-semibold">Logo gradient</span>
+            <span class="sg-swatch__token l2-mono">--gradient-logo</span>
+            <span class="p4">#0D21A1 → #09166B, 223°</span>
+          </span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Shadows -->
+    <section class="sg-section" aria-labelledby="shadows">
+      <h2 class="h4 sg-section__title" id="shadows">Shadows</h2>
+      <div class="sg-shadow-stage">
+        <div class="sg-shadow">
+          <div class="sg-shadow__box" style="box-shadow: var(--shadow-sm)"></div>
+          <span class="p3-semibold">Small</span>
+          <span class="sg-swatch__token l2-mono">--shadow-sm</span>
+          <span class="p4">0 4.8px 12px rgba(0,0,0,.1)</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="sg-toast p4-medium" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    // Color groups. Hex values are read from tokens.css, so this page always shows the real values.
+    const COLOR_GROUPS = [
+      { title: "Primary", colors: [
+        ["Light blue", "--color-primary-light-blue"],
+        ["Deep blue", "--color-primary-deep-blue"],
+      ]},
+      { title: "Secondary", colors: [
+        ["Secondary 100", "--color-secondary-100"],
+        ["Secondary 200", "--color-secondary-200"],
+        ["Secondary 300", "--color-secondary-300"],
+        ["Secondary 400", "--color-secondary-400"],
+      ]},
+      { title: "Accent", colors: [
+        ["Orange", "--color-accent-orange"],
+        ["Orange hover", "--color-accent-orange-hover"],
+        ["Yellow (logo)", "--color-accent-yellow"],
+      ]},
+      { title: "Neutral", colors: [
+        ["Neutral 0", "--color-neutral-0"],
+        ["Neutral 10", "--color-neutral-10"],
+        ["Neutral 20", "--color-neutral-20"],
+        ["Neutral 30", "--color-neutral-30"],
+        ["Neutral 50", "--color-neutral-50"],
+        ["Neutral 60", "--color-neutral-60"],
+        ["Neutral 70", "--color-neutral-70"],
+        ["Neutral 80", "--color-neutral-80"],
+        ["Neutral 90", "--color-neutral-90"],
+        ["Neutral 100", "--color-neutral-100"],
+      ]},
+    ];
+
+    const rootStyle = getComputedStyle(document.documentElement);
+    const groupsEl = document.getElementById("color-groups");
+
+    for (const group of COLOR_GROUPS) {
+      const wrap = document.createElement("div");
+      wrap.className = "sg-group";
+
+      const title = document.createElement("h3");
+      title.className = "l2 sg-group__title";
+      title.textContent = group.title;
+      wrap.appendChild(title);
+
+      const grid = document.createElement("div");
+      grid.className = "sg-colors";
+
+      for (const [name, token] of group.colors) {
+        const hex = rootStyle.getPropertyValue(token).trim().toUpperCase();
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "sg-swatch";
+        btn.dataset.copy = `var(${token})`;
+        btn.innerHTML = `
+          <span class="sg-swatch__chip" style="background: var(${token})"></span>
+          <span class="sg-swatch__text">
+            <span class="p3-semibold"></span>
+            <span class="sg-swatch__token l2-mono"></span>
+            <span class="p4"></span>
+          </span>`;
+        const [nameEl, tokenEl, hexEl] = btn.querySelectorAll(".sg-swatch__text > span");
+        nameEl.textContent = name;
+        tokenEl.textContent = token;
+        hexEl.textContent = hex;
+        grid.appendChild(btn);
+      }
+
+      wrap.appendChild(grid);
+      groupsEl.appendChild(wrap);
+    }
+
+    // Copy a CSS variable on click.
+    const toast = document.getElementById("toast");
+    let toastTimer;
+    document.addEventListener("click", async (event) => {
+      const swatch = event.target.closest("[data-copy]");
+      if (!swatch) return;
+      const value = swatch.dataset.copy;
+      try {
+        await navigator.clipboard.writeText(value);
+        toast.textContent = `Copied ${value}`;
+      } catch {
+        toast.textContent = value;
+      }
+      toast.classList.add("is-visible");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove("is-visible"), 1600);
+    });
+
+    // Show the live size / line height / tracking of each text style.
+    const round = (n) => Math.round(n * 100) / 100;
+
+    function updateSpecs() {
+      for (const el of document.querySelectorAll("[data-spec-for]")) {
+        const sample = document.getElementById(el.dataset.specFor);
+        const cs = getComputedStyle(sample);
+        const size = parseFloat(cs.fontSize);
+        const line = parseFloat(cs.lineHeight);
+        const tracking = parseFloat(cs.letterSpacing) || 0;
+        const family = cs.fontFamily.split(",")[0].replace(/"/g, "");
+        el.textContent = `${family} ${cs.fontWeight} · ${round(size)} / ${round(line)} · ${round(tracking)}px`;
+      }
+      const mobile = window.matchMedia("(max-width: 767px)").matches;
+      document.getElementById("scale-label").textContent = mobile ? "Mobile (proposal)" : "Desktop";
+    }
+
+    updateSpecs();
+    document.fonts.ready.then(updateSpecs);
+    window.addEventListener("resize", updateSpecs);
+  </script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+/*
+ * Inbenta design tokens
+ * Source: Figma "Website Redesign" → Style Guide (node 1635:43459)
+ *
+ * Change a value here and it updates everywhere on the site.
+ */
+
+:root {
+  /* ---------- Fonts ---------- */
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* ---------- Colors: Primary ---------- */
+  --color-primary-light-blue: #34ddff;
+  --color-primary-deep-blue: #0075ce;
+
+  /* ---------- Colors: Secondary ---------- */
+  --color-secondary-100: #01baef;
+  --color-secondary-200: #0d21a1;
+  --color-secondary-300: #041358;
+  --color-secondary-400: #020f35;
+
+  /* ---------- Colors: Accent ---------- */
+  --color-accent-orange: #f85940;
+  --color-accent-orange-hover: #f88040;
+  --color-accent-yellow: #fba828; /* logo yellow */
+
+  /* ---------- Colors: Neutral ---------- */
+  --color-neutral-0: #ffffff;
+  --color-neutral-10: #fbfbfc;
+  --color-neutral-20: #f7f7f7;
+  --color-neutral-30: #e7e7eb;
+  --color-neutral-50: #b1b3bc;
+  --color-neutral-60: #80828e;
+  --color-neutral-70: #515360;
+  --color-neutral-80: #353744;
+  --color-neutral-90: #1b1d27;
+  --color-neutral-100: #000000;
+
+  /* ---------- Gradients ---------- */
+  --gradient-logo: linear-gradient(223.26deg, #0d21a1 4.68%, #09166b 94.95%);
+
+  /* ---------- Shadows ---------- */
+  --shadow-sm: 0 4.8px 12px 0 rgb(0 0 0 / 0.1);
+
+  /* ---------- Type scale: desktop (from Figma) ----------
+   * Line height is a ratio and letter spacing is in em,
+   * so both stay proportional when the font size changes on mobile.
+   * At desktop sizes they equal the Figma px values exactly.
+   */
+
+  /* Headings: Inter Medium */
+  --h1-size: 53px;  --h1-line: 1.0566; /* 56px */    --h1-tracking: -0.0415em; /* -2.2px */
+  --h2-size: 48px;  --h2-line: 1.1458; /* 55px */    --h2-tracking: -0.0292em; /* -1.4px */
+  --h3-size: 40px;  --h3-line: 1.15;   /* 46px */    --h3-tracking: -0.03em;   /* -1.2px */
+  --h4-size: 32px;  --h4-line: 1.15;   /* 36.8px */  --h4-tracking: -0.0313em; /* -1px */
+  --h5-size: 24px;  --h5-line: 1.15;   /* 27.6px */  --h5-tracking: -0.0292em; /* -0.7px */
+
+  /* Body: Inter Regular (unless noted) */
+  --p0-size: 28px;  --p0-line: 1.4;    /* 39.2px */  --p0-tracking: -0.01em;   /* -0.28px */
+  --p1-size: 24px;  --p1-line: 1.5;    /* 36px */    --p1-tracking: -0.03em;   /* -0.72px */
+  --p2-size: 20px;  --p2-line: 1.5;    /* 30px */    --p2-tracking: -0.03em;   /* -0.6px */
+  --p3-size: 16px;  --p3-line: 1.5;    /* 24px */    --p3-tracking: -0.02em;   /* -0.32px */
+  --p3-semibold-size: 16px; --p3-semibold-line: 1.35; /* 21.6px */ --p3-semibold-tracking: -0.01em; /* -0.16px */
+  --p4-size: 14px;  --p4-line: 1.35;   /* 18.9px */  --p4-tracking: -0.02em;   /* -0.28px */
+  --p4-medium-size: 14px; --p4-medium-line: 1.35; /* 18.9px */ --p4-medium-tracking: -0.01em; /* -0.14px */
+
+  /* Labels */
+  --l1-size: 24px;  --l1-line: 1;      /* 24px */    --l1-tracking: -0.03em;   /* -0.72px, Semi Bold */
+  --l2-size: 18px;  --l2-line: 1;      /* 18px */    --l2-tracking: -0.03em;   /* -0.54px, Semi Bold */
+  --l3-size: 14px;  --l3-line: 1.2;    /* 16.8px */  --l3-tracking: -0.02em;   /* -0.28px, Medium */
+  --l1-mono-size: 16px; --l1-mono-line: 1; /* 16px */ --l1-mono-tracking: 0.01em; /* +0.16px, Geist Mono Medium */
+  --l2-mono-size: 14px; --l2-mono-line: 1; /* 14px */ --l2-mono-tracking: 0;      /* Geist Mono Medium */
+}
+
+/* ---------- Type scale: mobile ----------
+ * NOT in Figma yet (the style guide only has Desktop).
+ * Proposed values; only font sizes change, line height and tracking follow.
+ */
+@media (max-width: 767px) {
+  :root {
+    --h1-size: 36px;
+    --h2-size: 32px;
+    --h3-size: 28px;
+    --h4-size: 24px;
+    --h5-size: 20px;
+
+    --p0-size: 22px;
+    --p1-size: 20px;
+    --p2-size: 18px;
+
+    --l1-size: 20px;
+    --l2-size: 16px;
+  }
+}
