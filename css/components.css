@@ -1,0 +1,513 @@
+/*
+ * Components: Button, Link, Checkbox, Pill, Tabs
+ * Source: Figma "Website Redesign" → Components (node 1661:62742)
+ * Requires tokens.css and base.css.
+ *
+ * Hover states also respond to the .is-hover class,
+ * so the preview page can show them side by side.
+ */
+
+/* ---------- Component tokens ----------
+ * Values used only inside components. They are hardcoded in Figma
+ * (not Figma variables), so they live here rather than in tokens.css.
+ */
+:root {
+  --btn-ring: rgb(173 173 173 / 0.22);
+  --btn-ring-gradient: linear-gradient(108deg, #f06543 2%, #f06543 26.6%, #000000 52.8%, #0421d9 100%);
+  --btn-glass-bg: rgb(36 48 85 / 0.35);
+  --btn-glass-border: rgb(255 255 255 / 0.26);
+
+  --link-size: 24px;
+
+  --pill-blue-bg: rgb(0 64 255 / 0.6);
+  --pill-glass-bg: rgb(0 0 0 / 0.2);
+
+  --tab-active-bg: #03156d; /* close to --color-secondary-300 (#041358) but not equal */
+  --tab-mark: var(--color-neutral-50);
+
+  --focus-ring: 2px solid var(--color-primary-deep-blue);
+}
+
+
+/* =========================================================
+ * Button
+ * Figma props → classes:
+ *   type:  primary | secondary | Default (icon only) → .btn--primary | .btn--secondary | .btn--icon
+ *   color: orange | light | black | white | dark     → .btn--light | .btn--black | .btn--white | .btn--dark
+ *   size:  Large                                     → .btn--lg
+ *   icon:  leading                                   → .btn--with-icon
+ * ======================================================= */
+
+.btn {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: 3px;
+}
+
+/* ---------- Primary: glowing button ----------
+ * <a class="btn btn--primary">
+ *   <img class="btn__glow" src="assets/effects/glow-button.svg" alt="">
+ *   <span class="btn__label">Schedule a Demo</span>
+ * </a>
+ */
+.btn--primary {
+  isolation: isolate;
+  padding: 6px;
+  border-radius: 8px;
+}
+
+/* The ring is drawn inside the edge, like a Figma "inside" stroke,
+   and above the glow, like in Figma. */
+.btn--primary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--btn-ring);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.btn__glow {
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: calc(50% - 0.5px);
+  max-width: none;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.btn--primary .btn__label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  border-radius: 4px;
+  background: var(--color-accent-orange);
+  color: var(--color-neutral-0);
+  font-family: var(--font-sans);
+  font-weight: var(--weight-semibold);
+  font-size: var(--l2-size);
+  line-height: var(--l2-line);
+  letter-spacing: var(--l2-tracking);
+  transition: background-color 0.2s ease;
+}
+
+.btn--primary:hover .btn__label,
+.btn--primary.is-hover .btn__label {
+  background: var(--color-accent-orange-hover);
+}
+
+.btn--primary.btn--lg {
+  padding: 8px;
+  border-radius: 12px;
+}
+
+.btn--primary.btn--lg .btn__label {
+  padding: 20px 22px;
+  border-radius: 8px;
+  font-size: var(--l1-size);
+  line-height: var(--l1-line);
+  letter-spacing: var(--l1-tracking);
+}
+
+/* Primary / light: black label, gradient ring (orange → black → blue). */
+.btn--primary.btn--light::after {
+  padding: 2px;
+  border: 0;
+  background: var(--btn-ring-gradient);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+}
+
+.btn--primary.btn--light .btn__label {
+  height: 48px;
+  padding: 0 16px;
+  background: var(--color-neutral-100);
+  font-size: 16px;
+  line-height: 1;
+  letter-spacing: -0.03em; /* -0.48px */
+}
+
+/* ---------- Secondary ----------
+ * Figma strokes sit inside the box, so CSS padding is 1px smaller
+ * than in Figma to keep the same outer size.
+ */
+.btn--secondary {
+  height: 48px;
+  padding: 0 19px; /* 20px in Figma */
+  border: 1px solid transparent;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-weight: var(--weight-medium);
+  font-size: var(--l1-mono-size);
+  line-height: var(--l1-mono-line);
+  letter-spacing: var(--l1-mono-tracking);
+  text-transform: uppercase;
+}
+
+.btn--secondary.btn--black {
+  background: var(--color-neutral-100);
+  color: var(--color-neutral-0);
+}
+
+.btn--secondary.btn--black:hover,
+.btn--secondary.btn--black.is-hover {
+  background: var(--color-neutral-70);
+}
+
+.btn--secondary.btn--white {
+  border-color: var(--color-neutral-30);
+  background: var(--color-neutral-0);
+  color: var(--color-neutral-100);
+}
+
+.btn--secondary.btn--white:hover,
+.btn--secondary.btn--white.is-hover {
+  background: var(--color-neutral-30);
+}
+
+.btn--secondary.btn--with-icon {
+  padding-left: 7px; /* 8px in Figma */
+}
+
+/* Secondary / dark: translucent "glass" button for dark backgrounds. */
+.btn--secondary.btn--dark {
+  padding: 0 15px; /* 16px in Figma */
+  border-color: var(--btn-glass-border);
+  background: var(--btn-glass-bg);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  color: var(--color-neutral-0);
+  font-family: var(--font-sans);
+  font-weight: var(--weight-semibold);
+  font-size: 16px;
+  line-height: 1;
+  letter-spacing: -0.03em; /* -0.48px */
+  text-transform: none;
+}
+
+/* ---------- Icon only ---------- */
+.btn--icon {
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.btn--icon.btn--white {
+  border-color: var(--color-neutral-30);
+}
+
+.btn--icon.btn--white:hover,
+.btn--icon.btn--white.is-hover {
+  background: var(--color-neutral-30);
+}
+
+.btn--icon.btn--black {
+  border-color: var(--color-neutral-80);
+  background: var(--color-neutral-100);
+}
+
+.btn--icon.btn--black:hover,
+.btn--icon.btn--black.is-hover {
+  border-color: var(--color-neutral-70);
+  background: var(--color-neutral-70);
+}
+
+/* Arrow icon, built the same way as in Figma:
+   a 10px corner shape rotated inside an 18px box. */
+.icon-arrow {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+}
+
+.icon-arrow img {
+  rotate: -135deg;
+}
+
+
+/* =========================================================
+ * Link
+ * <a class="link" href="#">750+ CX operators.</a>
+ * ======================================================= */
+
+.link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-neutral-100);
+  font-family: var(--font-sans);
+  font-weight: var(--weight-bold);
+  font-size: var(--link-size);
+  line-height: 1.15;
+  letter-spacing: -0.03em; /* -0.72px */
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.link::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -2px;
+  left: 0;
+  height: 2px;
+  background: var(--color-accent-yellow);
+  transition: background-color 0.2s ease;
+}
+
+.link:hover,
+.link.is-hover {
+  color: var(--color-primary-deep-blue);
+}
+
+.link:hover::after,
+.link.is-hover::after {
+  background: var(--color-primary-deep-blue);
+}
+
+.link:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: 4px;
+}
+
+
+/* =========================================================
+ * Checkbox
+ * <label class="checkbox-field">
+ *   <input class="checkbox" type="checkbox"> Label
+ * </label>
+ * ======================================================= */
+
+.checkbox {
+  -webkit-appearance: none;
+  appearance: none;
+  position: relative;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.checkbox::before {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border: 1px solid var(--color-neutral-100);
+  border-radius: 2px;
+}
+
+.checkbox:checked::before {
+  border: 0;
+  background: var(--color-primary-light-blue) url("../assets/icons/check.svg") center / 20px 20px no-repeat;
+}
+
+.checkbox:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.checkbox-field {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+
+/* =========================================================
+ * Pill
+ * Made for dark or image backgrounds.
+ * <span class="pill">Step 1</span>
+ * <span class="pill pill--glass">Step 1</span>
+ * ======================================================= */
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px; /* 12px in Figma, minus the 1px border */
+  border: 1px solid var(--color-neutral-0);
+  border-radius: 999px;
+  background: var(--pill-blue-bg);
+  -webkit-backdrop-filter: blur(1.25px);
+  backdrop-filter: blur(1.25px);
+  color: var(--color-neutral-0);
+  font-family: var(--font-mono);
+  font-weight: var(--weight-medium);
+  font-size: var(--l2-mono-size);
+  line-height: var(--l2-mono-line);
+  letter-spacing: var(--l2-mono-tracking);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.pill--glass {
+  background: var(--pill-glass-bg);
+  -webkit-backdrop-filter: blur(2.5px);
+  backdrop-filter: blur(2.5px);
+}
+
+
+/* =========================================================
+ * Tabs (products)
+ * <div class="tabs" role="tablist">
+ *   <button class="tab" role="tab" aria-selected="true">
+ *     <img class="tab__icon tab__icon--default" src="assets/icons/search-dark.svg" alt="">
+ *     <img class="tab__icon tab__icon--active" src="assets/icons/search-light.svg" alt="">
+ *     Self-Service
+ *   </button>
+ *   ...
+ * </div>
+ * Tab switching: js/components.js
+ * ======================================================= */
+
+.tabs {
+  position: relative;
+  display: flex;
+  border: 1px solid var(--color-neutral-30);
+}
+
+.tab {
+  position: relative;
+  display: flex;
+  flex: 1 1 0;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 0;
+  height: 48px;
+  margin: 0;
+  padding: 0 24px;
+  border: 0;
+  border-right: 1px solid var(--color-neutral-30);
+  background: var(--color-neutral-20);
+  color: var(--color-neutral-90);
+  font-family: var(--font-sans);
+  font-weight: var(--weight-medium);
+  font-size: 16px;
+  line-height: 1;
+  letter-spacing: -0.01em; /* -0.16px */
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.tab:last-child {
+  border-right: 0;
+}
+
+.tab:hover,
+.tab.is-hover {
+  background: var(--color-neutral-30);
+}
+
+.tab[aria-selected="true"] {
+  background: var(--tab-active-bg);
+  color: var(--color-neutral-0);
+}
+
+.tab:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: -4px;
+}
+
+.tab__icon {
+  flex-shrink: 0;
+}
+
+.tab__icon--active,
+.tab[aria-selected="true"] .tab__icon--default {
+  display: none;
+}
+
+.tab[aria-selected="true"] .tab__icon--active {
+  display: block;
+}
+
+/* Corner and junction marks around the tab bar (2px, Neutral 50).
+ * Junctions (┬ ┴) sit on each divider, corners (┌ └ ┐ ┘) on the ends. */
+.tab::before,
+.tab::after,
+.tabs::before,
+.tabs::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  width: 14px;
+  height: 8px;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+.tab::before,
+.tab::after {
+  left: -7.5px;
+  background-image: linear-gradient(var(--tab-mark), var(--tab-mark)), linear-gradient(var(--tab-mark), var(--tab-mark));
+  background-size: 14px 2px, 2px 8px;
+}
+
+.tab::before {
+  top: -3px;
+  background-position: 0 0, 6px 0;
+}
+
+.tab::after {
+  bottom: -3px;
+  background-position: 0 100%, 6px 100%;
+}
+
+.tab:first-child::before,
+.tab:first-child::after,
+.tabs::before,
+.tabs::after {
+  width: 8px;
+  background-image: linear-gradient(var(--tab-mark), var(--tab-mark)), linear-gradient(var(--tab-mark), var(--tab-mark));
+  background-size: 8px 2px, 2px 8px;
+}
+
+.tab:first-child::before { left: -3px; top: -3px; background-position: 0 0, 0 0; }
+.tab:first-child::after { left: -3px; bottom: -3px; background-position: 0 100%, 0 100%; }
+.tabs::before { right: -3px; top: -3px; background-position: 100% 0, 100% 0; }
+.tabs::after { right: -3px; bottom: -3px; background-position: 100% 100%, 100% 100%; }
+
+/* Mobile: NOT in Figma yet. Proposal: icon above the label, smaller text. */
+@media (max-width: 767px) {
+  .tab {
+    flex-direction: column;
+    gap: 6px;
+    height: auto;
+    min-height: 64px;
+    padding: 10px 8px;
+    font-size: 14px;
+    line-height: 1.2;
+    white-space: normal;
+    text-align: center;
+  }
+}

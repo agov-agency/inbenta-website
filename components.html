@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inbenta Components</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@500&family=Inter:wght@400;500;600;700&display=swap">
+
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/styleguide.css">
+</head>
+<body>
+
+  <div class="sg-bar">
+    <nav class="sg-bar__nav l3" aria-label="Style guide">
+      <a href="styleguide.html">Foundations</a>
+      <a href="components.html" aria-current="page">Components</a>
+    </nav>
+    <span class="sg-bar__scale l2-mono" id="scale-label">Desktop</span>
+  </div>
+
+  <main class="sg">
+
+    <header class="sg-hero">
+      <h1>Components</h1>
+      <p class="p2">Buttons, link and controls from the Figma "Components" page. Styles live in <code>css/components.css</code>. Hover over any component to see its live hover state.</p>
+    </header>
+
+    <!-- ===================== Buttons ===================== -->
+    <section class="sg-section" aria-labelledby="buttons">
+      <h2 class="h4 sg-section__title" id="buttons">Button</h2>
+
+      <div class="sg-states">
+        <div class="sg-states__head p4-medium"><span></span><span>Enabled</span><span>Hover</span></div>
+
+        <div class="sg-states__row">
+          <div class="sg-states__name"><span class="p3-semibold">Primary · Large</span><code class="p4">.btn--primary.btn--lg</code></div>
+          <div class="sg-states__cell" data-state="Enabled">
+            <a class="btn btn--primary btn--lg" href="#">
+              <img class="btn__glow" src="assets/effects/glow-button-large.svg" alt="">
+              <span class="btn__label">Schedule a Demo</span>
+            </a>
+          </div>
+          <div class="sg-states__cell" data-state="Hover">
+            <a class="btn btn--primary btn--lg is-hover" href="#">
+              <img class="btn__glow" src="assets/effects/glow-button-large.svg" alt="">
+              <span class="btn__label">Schedule a Demo</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="sg-states__row">
+          <div class="sg-states__name"><span class="p3-semibold">Primary</span><code class="p4">.btn--primary</code></div>
+          <div class="sg-states__cell" data-state="Enabled">
+            <a class="btn btn--primary" href="#">
+              <img class="btn__glow" src="assets/effects/glow-button.svg" alt="">
+              <span class="btn__label">Schedule a Demo</span>
+            </a>
+          </div>
+          <div class="sg-states__cell" data-state="Hover">
+            <a class="btn btn--primary is-hover" href="#">
+              <img class="btn__glow" src="assets/effects/glow-button.svg" alt="">
+              <span class="btn__label">Schedule a Demo</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="sg-states__row">
+          <div class="sg-states__name"><span class="p3-semibold">Secondary · Black</span><code class="p4">.btn--secondary.btn--black</code></div>
+          <div class="sg-states__cell" data-state="Enabled">
+            <a class="btn btn--secondary btn--black" href="#">Schedule a Demo</a>
+          </div>
+          <div class="sg-states__cell" data-state="Hover">
+            <a class="btn btn--secondary btn--black is-hover" href="#">Schedule a Demo</a>
+          </div>
+        </div>
+
+        <div class="sg-states__row">
+          <div class="sg-states__name"><span class="p3-semibold">Secondary · White</span><code class="p4">.btn--secondary.btn--white</code></div>
+          <div class="sg-states__cell" data-state="Enabled">
+            <a class="btn btn--secondary btn--white" href="#">Explore Learn+</a>
+            <a class="btn btn--secondary btn--white btn--with-icon" href="#">
+              <img src="assets/icons/play.svg" alt="">
+              Explore Learn+
+            </a>
+          </div>
+          <div class="sg-states__cell" data-state="Hover">
+            <a class="btn btn--secondary btn--white is-hover" href="#">Explore Learn+</a>
+            <a class="btn btn--secondary btn--white btn--with-icon is-hover" href="#">
+              <img src="assets/icons/play.svg" alt="">
+              Explore Learn+
+            </a>
+          </div>
+        </div>
+
+        <div class="sg-states__row">
+          <div class="sg-states__name"><span class="p3-semibold">Icon · White</span><code class="p4">.btn--icon.btn--white</code></div>
+          <div class="sg-states__cell" data-state="Enabled">
+            <button class="btn btn--icon btn--white" type="button" aria-label="Previous">
+              <span class="icon-arrow"><img src="assets/icons/arrow-left-dark.svg" alt=""></span>
+            </button>
+          </div>
+          <div class="sg-states__cell" data-state="Hover">
+            <button class="btn btn--icon btn--white is-hover" type="button" aria-label="Previous">
+              <span class="icon-arrow"><img src="assets/icons/arrow-left-dark.svg" alt=""></span>
+            </button>
+          </div>
+        </div>
+
+        <div class="sg-states__row">
+          <div class="sg-states__name"><span class="p3-semibold">Icon · Black</span><code class="p4">.btn--icon.btn--black</code></div>
+          <div class="sg-states__cell" data-state="Enabled">
+            <button class="btn btn--icon btn--black" type="button" aria-label="Previous">
+              <span class="icon-arrow"><img src="assets/icons/arrow-left-light.svg" alt=""></span>
+            </button>
+          </div>
+          <div class="sg-states__cell" data-state="Hover">
+            <button class="btn btn--icon btn--black is-hover" type="button" aria-label="Previous">
+              <span class="icon-arrow"><img src="assets/icons/arrow-left-light.svg" alt=""></span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="l2 sg-subtitle">On dark backgrounds</h3>
+      <div class="sg-stage sg-stage--dark">
+        <div class="sg-states">
+          <div class="sg-states__head p4-medium"><span></span><span>Enabled</span><span></span></div>
+          <div class="sg-states__row">
+            <div class="sg-states__name"><span class="p3-semibold">Primary · Light</span><code class="p4">.btn--primary.btn--light</code></div>
+            <div class="sg-states__cell" data-state="Enabled">
+              <a class="btn btn--primary btn--light" href="#">
+                <img class="btn__glow" src="assets/effects/glow-button-light.svg" alt="">
+                <span class="btn__label">Schedule a Demo</span>
+              </a>
+            </div>
+            <div></div>
+          </div>
+          <div class="sg-states__row">
+            <div class="sg-states__name"><span class="p3-semibold">Secondary · Dark</span><code class="p4">.btn--secondary.btn--dark</code></div>
+            <div class="sg-states__cell" data-state="Enabled">
+              <a class="btn btn--secondary btn--dark" href="#">Define your success metrics</a>
+            </div>
+            <div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== Link ===================== -->
+    <section class="sg-section" aria-labelledby="link">
+      <h2 class="h4 sg-section__title" id="link">Link</h2>
+      <div class="sg-states">
+        <div class="sg-states__head p4-medium"><span></span><span>Enabled</span><span>Hover</span></div>
+        <div class="sg-states__row">
+          <div class="sg-states__name"><span class="p3-semibold">Link</span><code class="p4">.link</code></div>
+          <div class="sg-states__cell" data-state="Enabled"><a class="link" href="#">750+ CX operators.</a></div>
+          <div class="sg-states__cell" data-state="Hover"><a class="link is-hover" href="#">750+ CX operators.</a></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== Controls ===================== -->
+    <section class="sg-section" aria-labelledby="checkbox">
+      <h2 class="h4 sg-section__title" id="checkbox">Checkbox</h2>
+      <div class="sg-states">
+        <div class="sg-states__head p4-medium"><span></span><span>Unselected</span><span>Selected</span></div>
+        <div class="sg-states__row">
+          <div class="sg-states__name"><span class="p3-semibold">Checkbox</span><code class="p4">.checkbox</code></div>
+          <div class="sg-states__cell" data-state="Unselected">
+            <label class="checkbox-field p3"><input class="checkbox" type="checkbox"> Click to toggle</label>
+          </div>
+          <div class="sg-states__cell" data-state="Selected">
+            <label class="checkbox-field p3"><input class="checkbox" type="checkbox" checked> Click to toggle</label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sg-section" aria-labelledby="pill">
+      <h2 class="h4 sg-section__title" id="pill">Pill</h2>
+      <div class="sg-stage sg-stage--dark">
+        <div class="sg-states">
+          <div class="sg-states__head p4-medium"><span></span><span>Blue</span><span>Glass</span></div>
+          <div class="sg-states__row">
+            <div class="sg-states__name"><span class="p3-semibold">Pill</span><code class="p4">.pill / .pill--glass</code></div>
+            <div class="sg-states__cell" data-state="Blue"><span class="pill">Step 1</span></div>
+            <div class="sg-states__cell" data-state="Glass"><span class="pill pill--glass">Step 1</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sg-section" aria-labelledby="tabs">
+      <h2 class="h4 sg-section__title" id="tabs">Tabs / products</h2>
+      <p class="p3 sg-section__note">Click a tab or use the arrow keys. Code: <code>.tabs</code> + <code>.tab</code>, switching in <code>js/components.js</code>.</p>
+
+      <div class="tabs" role="tablist" aria-label="Products">
+        <button class="tab" role="tab" type="button" aria-selected="true">
+          <img class="tab__icon tab__icon--default" src="assets/icons/search-dark.svg" alt="">
+          <img class="tab__icon tab__icon--active" src="assets/icons/search-light.svg" alt="">
+          Self-Service
+        </button>
+        <button class="tab" role="tab" type="button" aria-selected="false">
+          <img class="tab__icon tab__icon--default" src="assets/icons/stars-dark.svg" alt="">
+          <img class="tab__icon tab__icon--active" src="assets/icons/stars-light.svg" alt="">
+          AI Assistant
+        </button>
+        <button class="tab" role="tab" type="button" aria-selected="false">
+          <img class="tab__icon tab__icon--default" src="assets/icons/headphones-dark.svg" alt="">
+          <img class="tab__icon tab__icon--active" src="assets/icons/headphones-light.svg" alt="">
+          Live Agent Assist
+        </button>
+      </div>
+
+      <h3 class="l2 sg-subtitle">Single tab</h3>
+      <div class="sg-states">
+        <div class="sg-states__head p4-medium"><span></span><span>Default</span><span>Hover</span></div>
+        <div class="sg-states__row">
+          <div class="sg-states__name"><span class="p3-semibold">Tab / product</span><code class="p4">.tab</code></div>
+          <div class="sg-states__cell" data-state="Default">
+            <div class="sg-tab-solo">
+              <button class="tab" type="button" tabindex="-1">
+                <img class="tab__icon tab__icon--default" src="assets/icons/stars-dark.svg" alt="">
+                AI Assistant
+              </button>
+            </div>
+          </div>
+          <div class="sg-states__cell" data-state="Hover">
+            <div class="sg-tab-solo">
+              <button class="tab is-hover" type="button" tabindex="-1">
+                <img class="tab__icon tab__icon--default" src="assets/icons/stars-dark.svg" alt="">
+                AI Assistant
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="js/components.js"></script>
+  <script>
+    // Preview only: keep demo links from jumping to the top, show the active type scale.
+    document.addEventListener("click", (event) => {
+      if (event.target.closest('a[href="#"]')) event.preventDefault();
+    });
+    const scale = document.getElementById("scale-label");
+    const mq = window.matchMedia("(max-width: 767px)");
+    const updateScale = () => { scale.textContent = mq.matches ? "Mobile (proposal)" : "Desktop"; };
+    updateScale();
+    mq.addEventListener("change", updateScale);
+  </script>
+</body>
+</html>
