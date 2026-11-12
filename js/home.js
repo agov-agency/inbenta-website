@@ -24,6 +24,23 @@
   }, 2800);
 })();
 
+// Page background: grey by default, white once the products section
+// (Self-Service first) reaches the middle of the screen. Scrolling back up
+// turns it grey again. The colour change itself is a CSS transition.
+(() => {
+  const target = document.querySelector(".products__body");
+  if (!target) return;
+
+  const update = () => {
+    const reached = target.getBoundingClientRect().top < window.innerHeight * 0.5;
+    document.body.classList.toggle("is-light", reached);
+  };
+
+  window.addEventListener("scroll", update, { passive: true });
+  window.addEventListener("resize", update);
+  update();
+})();
+
 // Products: highlight the tab of the product currently in view.
 (() => {
   const tabs = [...document.querySelectorAll(".products__tabs .tab")];

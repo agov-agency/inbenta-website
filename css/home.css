@@ -29,8 +29,17 @@
   }
 }
 
+/* The page is grey by default and turns white once the products
+   section is reached (js/home.js toggles .is-light). Surfaces that must
+   match the page colour use var(--page-bg). */
 body {
-  background: var(--color-neutral-20);
+  --page-bg: var(--color-neutral-20);
+  background: var(--page-bg);
+  transition: background-color 0.6s ease;
+}
+
+body.is-light {
+  --page-bg: var(--color-neutral-0);
 }
 
 .container {
@@ -831,9 +840,13 @@ a.proof-card:hover {
   background: linear-gradient(to left, #213df2, #3db3d1);
 }
 
-/* Cards row with full-width dividers and junction marks */
+/* Cards row with full-width dividers and junction marks.
+   It sits above the products tab bar, which starts hidden behind it. */
 .ways-wrap {
   position: relative;
+  z-index: 21;
+  background: var(--page-bg);
+  transition: background-color 0.6s ease;
 }
 
 .ways-wrap::before,
@@ -990,7 +1003,8 @@ a.proof-card:hover {
 
 :root {
   --nav-h: 72px;
-  --products-bar-h: 136px;
+  --products-bar-h: 50px; /* height of the tabs, borders included */
+  --products-bar-tuck: 8px; /* extra overlap that also hides the tab corner marks */
 }
 
 html {
@@ -1003,6 +1017,9 @@ html {
   }
 }
 
+/* The tab bar starts tucked behind the bottom of the platform cards, so it
+   is not visible at first. It sticks under the nav; as the cards scroll
+   away they uncover it, and the tabs are left in the cards' place. */
 .products__bar {
   position: sticky;
   top: var(--nav-h);
@@ -1010,7 +1027,9 @@ html {
   display: flex;
   align-items: flex-end;
   height: var(--products-bar-h);
-  background: var(--color-neutral-0);
+  margin-top: calc(-1 * (var(--products-bar-h) + var(--products-bar-tuck)));
+  background: var(--page-bg);
+  transition: background-color 0.6s ease;
 }
 
 .products__bar::before,
@@ -1025,8 +1044,8 @@ html {
   background: linear-gradient(90deg, rgb(231 231 235 / 0) 0%, var(--color-neutral-30) 5.8631%, var(--color-neutral-30) 94.156%, rgb(231 231 235 / 0) 100%);
 }
 
-.products__bar::before { top: 87px; }
-.products__bar::after { top: 135px; }
+.products__bar::before { top: 1px; }
+.products__bar::after { bottom: 0; }
 
 .products__bar .container {
   position: relative;
@@ -1042,7 +1061,8 @@ html {
   grid-template-columns: minmax(0, 660px) minmax(0, 660px);
   justify-content: space-between;
   gap: 16px;
-  padding-top: 32px;
+  /* 32px below the tabs' final position, which is the cards' bottom edge */
+  padding-top: calc(var(--products-bar-h) + var(--products-bar-tuck) + 32px);
 }
 
 .products__list {
@@ -1254,15 +1274,7 @@ html {
 
 @media (max-width: 767px) {
   :root {
-    --products-bar-h: 96px;
-  }
-
-  .products__bar::before {
-    top: 15px;
-  }
-
-  .products__bar::after {
-    top: 95px;
+    --products-bar-h: 80px; /* stacked icon + label tabs */
   }
 
   .features {
