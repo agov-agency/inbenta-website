@@ -3079,7 +3079,7 @@ html {
 
 
 /* =========================================================
- * Page bottom: FAQ, final CTA, footer over one artwork
+ * Page bottom: FAQ on white, then the final CTA artwork and footer
  * ======================================================= */
 
 .page-bottom {
@@ -3088,18 +3088,6 @@ html {
   overflow: hidden;
   padding-top: 160px;
   background: var(--color-neutral-0);
-}
-
-/* White at the top, blue light in the middle, dark navy under the footer */
-.page-bottom__art {
-  position: absolute;
-  z-index: -1;
-  bottom: 0; /* anchored to the bottom so the CTA and footer sit on the same part of the artwork as in Figma */
-  left: 0;
-  width: 100%;
-  height: 1780px;
-  object-fit: cover;
-  pointer-events: none;
 }
 
 /* ---------- FAQ ---------- */
